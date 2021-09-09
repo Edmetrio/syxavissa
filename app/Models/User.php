@@ -2,14 +2,22 @@
 
 namespace App\Models;
 
+use App\Models\Models\Endereco;
+use App\Models\Models\Perfil;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Uuid;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected $guarded = [];
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function perfils()
+    {
+        return $this->hasMany(Perfil::class, 'users_id');
+    }
 }
