@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\api\EnderecoController;
+use App\Http\Controllers\api\NivelController;
+use App\Http\Controllers\api\OperadoraController;
+use App\Http\Controllers\Api\PerfilController;
+use App\Http\Controllers\api\TelefoneController;
+use App\Models\Models\Endereco;
+use App\Models\Models\Telefone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +21,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResource('perfil', PerfilController::class);
+
+Route::apiResource('nivel', NivelController::class);
+
+Route::apiResource('telefone', TelefoneController::class);
+
+Route::apiResource('operadora', OperadoraController::class);
+
+Route::apiResource('endereco', EnderecoController::class);
