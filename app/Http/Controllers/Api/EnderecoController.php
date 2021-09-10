@@ -28,9 +28,9 @@ class EnderecoController extends Controller
         }
     }
 
-    public function show(Endereco $endereco)
+    public function show($id)
     {
-        return $endereco;
+        return Endereco::where(['id' => $id])->with(['perfils'])->get();
     }
 
     public function update(Request $request, Endereco $endereco)
