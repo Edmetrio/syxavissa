@@ -32,7 +32,7 @@ class PerfilController extends Controller
 
     public function show(Perfil $perfil)
     {
-        return $perfil;
+        return $perfil->with(['users'])->get();
     }
 
     public function update(Request $request, Perfil $perfil)
