@@ -15,7 +15,7 @@ class TipoController extends Controller
      */
     public function index()
     {
-        return Tipo::latest()->get();
+        return Tipo::orderBy('id', 'desc')->get();
     }
 
     public function store(Request $request, Tipo $tipo)
