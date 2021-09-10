@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Models\Endereco;
 use App\Models\Models\Perfil;
+use App\Models\Models\Stock;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -52,5 +53,10 @@ class User extends Authenticatable
     public function perfils()
     {
         return $this->hasMany(Perfil::class, 'users_id');
+    }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'users_id');
     }
 }
