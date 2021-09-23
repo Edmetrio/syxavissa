@@ -16,7 +16,7 @@ class SubcategoriaController extends Controller
      */
     public function index()
     {
-        return Subcategoria::with(['categorias'])->get();
+        return Subcategoria::with(['categorias'])->orderBy('id', 'desc')->get();
     }
 
     public function store(Request $request)
