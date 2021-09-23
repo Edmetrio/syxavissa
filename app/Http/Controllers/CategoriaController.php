@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Models\Categoria;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class CategoriaController extends Controller
 {
@@ -25,7 +26,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('createCategoria');
     }
 
     /**
@@ -36,7 +38,28 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $input = $request->all();
+        if ($icon = $request->file('icon')) {
+            $destino = 'assets/images/categoria';
+            $perfil = date('YmdHis') . "." . $icon->getClientOriginalExtension();
+            $icon->move($destino, $perfil);
+            $input['icon'] = "$perfil";
+        } else {
+            unset($input['icon']);
+        }
+
+        $categoria = Categoria::create($input);
+        if ($categoria) {
+            $request->session()->flash('status', 'Categoria adicionada');
+            return redirect('categoria');
+        }
+        $request->session()->flash('status', 'Erro ao Adicionar!');
+        return redirect('categoria');
     }
 
     /**
@@ -50,27 +73,37 @@ class CategoriaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        return view('createCategoria', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required',
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $input = $request->all();
+        if ($icon = $request->file('icon')) {
+            $destino = 'assets/images/categoria';
+            $perfil = date('YmdHis') . "." . $icon->getClientOriginalExtension();
+            $icon->move($destino, $perfil);
+            $input['icon'] = "$perfil";
+        } else {
+            unset($input['icon']);
+        }
+
+        $categoria = Categoria::find($id)->update($input);
+        if ($categoria) {
+            $request->session()->flash('status', 'Categoria alterada');
+            return redirect('categoria');
+        }
+        $request->session()->flash('status', 'Erro a Alterar!');
+        return redirect('categoria');
     }
 
     /**
