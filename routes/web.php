@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArtigoController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\SubcategoriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('/', InicioController::class);
+
+Route::resource('categoria', CategoriaController::class);
+
+Route::resource('subcategoria', SubcategoriaController::class);
+
+Route::resource('artigo', ArtigoController::class);
 
 require __DIR__.'/auth.php';
