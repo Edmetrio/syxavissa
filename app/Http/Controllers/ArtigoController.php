@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Models\Artigo;
+use App\Models\Models\Categoria;
+use App\Models\Models\Subcategoria;
+use App\Models\Models\Tipo;
 use Illuminate\Http\Request;
 
 class ArtigoController extends Controller
@@ -25,7 +28,11 @@ class ArtigoController extends Controller
      */
     public function create()
     {
-        //
+        $artigo = Artigo::with(['categorias','subcategorias','tipos'])->orderBy('id', 'desc')->get();
+        $categoria = Categoria::orderBy('id', 'desc')->get();
+        $tipo = Tipo::orderBy('id', 'desc')->get();
+        $subcategoria = Subcategoria::orderBy('id', 'desc')->get();
+        return view('createArtigo', compact('artigo', 'categoria', 'tipo','subcategoria'));
     }
 
     /**
