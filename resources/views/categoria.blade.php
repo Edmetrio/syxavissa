@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <h4 class="header-title">Lista das Subcategorias</h4>
                         <div class="input-group-append" style="float: right;">
-                            <a href="{{url('categoria/create')}}"> Adicionar</a>
+                            <a href="{{url('categoria/create')}}" class="btn btn-primary"> Adicionar</a>
                         </div>
                         <p class="text-muted font-13 mb-4">
                             Subcategorias: são subfases de uma categoria
