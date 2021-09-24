@@ -15,6 +15,7 @@ class Stock extends Model
     protected $keyType = 'string';
     public $incrementing = false;
     protected $guarded = [];
+    /* protected $primaryKey = 'artigo_id'; */
 
     protected $table = 'stock';
     protected $fillable = ['users_id','artigo_id','unidade_id','armazem_id','custo','quantidade','stockminimo','estado'];
