@@ -13,9 +13,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Lista dos Artigos</h4>
-                    <!-- <div class="input-group-append" style="float: right;">
-                            <a href="{{url('artigo/create')}}"> Adicionar</a>
-                        </div> -->
+                    <div class="input-group-append" style="float: right;">
+                            <a href="{{url('artigo/create')}}" class="btn btn-primary"> Adicionar</a>
+                        </div>
                     <p class="text-muted font-13 mb-4">
                         Artigos: são produtos finais por se vender
                     </p>
@@ -33,6 +33,7 @@
                                 <th>Tipo</th>
                                 <th>Ícone</th>
                                 <th>Preço</th>
+                                <th>Acções</th>
                             </tr>
                         </thead>
 
@@ -45,6 +46,7 @@
                                 <td>{{$a->tipos->nome}}</td>
                                 <td><img class="img-fluid" src="assets/images/artigo/{{$a->icon}}" alt="Artigo" style="width: 30px"/></td>
                                 <td>{{$a->preco}}</td>
+                                <td><a href="{{url("artigo/$a->id/edit")}}">Alterar</a></td>
                             </tr>
                             @endforeach
                         </tbody>
