@@ -39,7 +39,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputState" class="col-form-label">Categoria</label>
                                 <select name="categoria_id" class="form-control">
-                                    <option value="{{$artigo->categorias->id ?? ''}}">{{$artigo->categorias->nome ?? ''}}</option>
+                                    <option value="{{$artigo->categorias->id ?? 'Seleccione a Categoria'}}">{{$artigo->categorias->nome ?? 'Seleccione a Categoria'}}</option>
                                     @foreach($categoria as $c)
                                     <option value="{{$c->id}}">{{$c->nome}}</option>
                                     @endforeach
@@ -48,7 +48,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputState" class="col-form-label">Subcategoria</label>
                                 <select name="subcategoria_id" class="form-control">
-                                    <option value="{{$artigo->subcategorias->id ?? ''}}">{{$artigo->subcategorias->nome ?? ''}}</option>
+                                    <option value="{{$artigo->subcategorias->id ?? ''}}">{{$artigo->subcategorias->nome ?? 'Seleccione a Subcategoria'}}</option>
                                     @foreach($subcategoria as $s)
                                     <option value="{{$s->id}}">{{$s->nome}}</option>
                                     @endforeach
@@ -57,7 +57,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputState" class="col-form-label">Tipo</label>
                                 <select name="tipo_id" class="form-control">
-                                    <option value="{{$artigo->tipos->id ?? ''}}">{{$artigo->tipos->nome ?? ''}}</option>
+                                    <option value="{{$artigo->tipos->id ?? ''}}">{{$artigo->tipos->nome ?? 'Seleccione o Tipo'}}</option>
                                     @foreach($tipo as $t)
                                     <option value="{{$t->id}}">{{$t->nome}}</option>
                                     @endforeach
@@ -66,7 +66,13 @@
                             <div class="form-group col-md-6">
                                 <label for="inputState" class="col-form-label">Unidade</label>
                                 <select name="unidade_id" class="form-control">
-                                    <option value=""></option>
+                                    @if(isset($artigo))
+                                    @foreach($artigo->stocks as $s)
+                                    <option value="{{$s->unidades->id}}">{{$s->unidades->nome}}</option>
+                                    @endforeach
+                                    @else
+                                    <option value="">Seleccione a Unidade </option>
+                                    @endif
                                     @foreach($unidade as $u)
                                     <option value="{{$u->id}}">{{$u->nome}}</option>
                                     @endforeach
@@ -98,7 +104,13 @@
                             <div class="form-group col-md-6">
                             <label for="inputState" class="col-form-label">Armazém</label>
                                 <select name="armazem_id" class="form-control">
-                                    <option value=""></option>
+                                    @if(isset($artigo))
+                                    @foreach($artigo->stocks as $a)
+                                    <option value="{{$a->armazens->id}}">{{$a->armazens->nome}}</option>
+                                    @endforeach
+                                    @else 
+                                    <option value="{{$a->armazens->id ?? ''}}">{{$a->armazens->nome ?? 'Seleccione o Armazém'}}</option>
+                                    @endif
                                     @foreach($armazem as $a)
                                     <option value="{{$a->id}}">{{$a->nome}}</option>
                                     @endforeach
