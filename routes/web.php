@@ -3,7 +3,9 @@
 use App\Http\Controllers\ArtigoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubcategoriaController;
+use App\Models\Models\Stock;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,5 +34,7 @@ Route::resource('categoria', CategoriaController::class);
 Route::resource('subcategoria', SubcategoriaController::class);
 
 Route::resource('artigo', ArtigoController::class);
+
+Route::resource('stock', StockController::class);
 
 require __DIR__.'/auth.php';
