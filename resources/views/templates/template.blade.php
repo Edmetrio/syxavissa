@@ -113,14 +113,25 @@
                             <div class="collapse" id="sidebarEmail">
                                 <ul class="nav-second-level">
                                     <li><a href="{{url('artigo')}}">Artigo</a></li>
-                                    <li><a href="#">Composição</a></li>
-                                    <li><a href="#">Unidade</a></li>
+                                    <!-- <li><a href="#">Composição</a></li>
+                                    <li><a href="#">Unidade</a></li> -->
                                 </ul>
                             </div>
                         </li>
 
                         <li class="menu-title mt-2">Segundo Atalho</li>
+                        <li>
+                            <a href="#Segundo" data-toggle="collapse">
+                                <i></i>
+                                <span> Processamento </span>
+                            </a>
 
+                            <div class="collapse" id="Segundo">
+                                <ul class="nav-second-level">
+                                    <li><a href="{{url('stock')}}">Estoque</a></li>
+                                </ul>
+                            </div>
+                        </li>
 
                         <li class="menu-title">Terceiro Atalho</li>
                     </ul>
